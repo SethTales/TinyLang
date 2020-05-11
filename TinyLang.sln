@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyLang", "TinyLang\TinyLang.csproj", "{7D2F5BCF-1558-4005-BA1F-2A6C3F1A1972}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyLang.Tests", "TinyLang.Tests\TinyLang.Tests.csproj", "{196EE54A-4001-4E28-99CF-0B96E84A0B86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D2F5BCF-1558-4005-BA1F-2A6C3F1A1972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D2F5BCF-1558-4005-BA1F-2A6C3F1A1972}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D2F5BCF-1558-4005-BA1F-2A6C3F1A1972}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D2F5BCF-1558-4005-BA1F-2A6C3F1A1972}.Release|Any CPU.Build.0 = Release|Any CPU
+		{196EE54A-4001-4E28-99CF-0B96E84A0B86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{196EE54A-4001-4E28-99CF-0B96E84A0B86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{196EE54A-4001-4E28-99CF-0B96E84A0B86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{196EE54A-4001-4E28-99CF-0B96E84A0B86}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DA89DE50-1D05-46D1-A019-3B7901D4EF17}
+	EndGlobalSection
+EndGlobal
