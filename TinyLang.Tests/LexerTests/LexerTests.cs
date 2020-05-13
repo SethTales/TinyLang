@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
+using TinyLang.Adapters.Factories;
 using TinyLang.Compiler;
 using TinyLang.Models;
 
@@ -14,7 +15,7 @@ namespace TinyLang.Tests.LexerTests
         [SetUp]
         public void SetUp()
         {
-            _lexer = new Lexer();
+            _lexer = new Lexer(new StreamReaderAdapterFactory());
         }
 
         [TestCase("if else elseif func return true false;")]
@@ -164,6 +165,42 @@ namespace TinyLang.Tests.LexerTests
                 new Token(TokenType.Separator, "}", typeof(string)),
                 new Token(TokenType.Keyword, "return", typeof(string)),
                 new Token(TokenType.Identifier, "a", typeof(string)),
+                new Token(TokenType.Separator, ";", typeof(string)),
+                new Token(TokenType.Separator, "}", typeof(string))
+            };
+
+            var actualTokens = _lexer.Tokenize(codeUnderTest);
+
+            AssertTokensMatch(expectedTokens, actualTokens);
+        }
+
+        [TestCase("ConditionalFunctionWithParametersAndStringLiteral")]
+        public void SimpleIfCondition_WithParameters_AndReturn_AndStringLiteral_InFunction(string testCaseName)
+        {
+            var codeUnderTest = LoadTestCaseFromFile(testCaseName);
+            var expectedTokens = new List<Token>()
+            {
+                new Token(TokenType.Keyword, "func", typeof(string)),
+                new Token(TokenType.Identifier, "main", typeof(string)),
+                new Token(TokenType.Separator, "(", typeof(string)),
+                new Token(TokenType.Identifier, "a", typeof(string)),
+                new Token(TokenType.Separator, ",", typeof(string)),
+                new Token(TokenType.Identifier, "b", typeof(string)),
+                new Token(TokenType.Separator, ")", typeof(string)),
+                new Token(TokenType.Separator, "{", typeof(string)),
+                new Token(TokenType.Keyword, "if", typeof(string)),
+                new Token(TokenType.Separator, "(", typeof(string)),
+                new Token(TokenType.Identifier, "a", typeof(string)),
+                new Token(TokenType.Operator, ">", typeof(string)),
+                new Token(TokenType.Identifier, "b", typeof(string)),
+                new Token(TokenType.Separator, ")", typeof(string)),
+                new Token(TokenType.Separator, "{", typeof(string)),
+                new Token(TokenType.Keyword, "return", typeof(string)),
+                new Token(TokenType.Identifier, "b", typeof(string)),
+                new Token(TokenType.Separator, ";", typeof(string)),
+                new Token(TokenType.Separator, "}", typeof(string)),
+                new Token(TokenType.Keyword, "return", typeof(string)),
+                new Token(TokenType.Literal, "\"hello\"", typeof(string)),
                 new Token(TokenType.Separator, ";", typeof(string)),
                 new Token(TokenType.Separator, "}", typeof(string))
             };

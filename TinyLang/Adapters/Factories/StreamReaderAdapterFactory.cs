@@ -6,11 +6,11 @@ namespace TinyLang.Adapters.Factories
 {
     public interface IStreamReaderAdapterFactory
     {
-        IStreamReaderAdapter BuilStreamReaderAdapter(string input);
+        IStreamReaderAdapter BuildStreamReaderAdapater(string input);
     }
     public class StreamReaderAdapterFactory : IStreamReaderAdapterFactory
     {
-        public IStreamReaderAdapter BuilStreamReaderAdapter(string input)
+        public IStreamReaderAdapter BuildStreamReaderAdapater(string input)
         {
             return new StreamReaderAdapter(input);
         }

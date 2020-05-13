@@ -1,0 +1,6 @@
+﻿func main(a, b) {
+	if (a > b) {
+		return b;
+	}
+	return "hello";
+}

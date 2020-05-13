@@ -16,6 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="TestFiles\TinyLangSourceCodeCases\ConditionalFunctionWithParametersAndStringLiteral.ty">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="TestFiles\TinyLangSourceCodeCases\ConditionalFunctionWithParameters.ty">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

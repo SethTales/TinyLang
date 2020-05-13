@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -34,7 +35,7 @@ namespace TinyLang.Compiler
             var tokenBuilder = new StringBuilder();
             _tokens = new List<Token>();
 
-            using (var streamReaderAdapter = _streamReaderAdapterFactory.BuilStreamReaderAdapter(input))
+            using (var streamReaderAdapter = _streamReaderAdapterFactory.BuildStreamReaderAdapater(input))
             {
                 while (streamReaderAdapter.Peek() != EOF)
                 {
@@ -81,12 +82,18 @@ namespace TinyLang.Compiler
 
         private Token CheckForMatchedToken(StringBuilder tokenBuilder)
         {
-            return MatchIdentiferOrKeyword(tokenBuilder) ?? MatchNumericLiteral(tokenBuilder) ?? MatchOperator(tokenBuilder) ?? null;
+            return MatchIdentiferOrKeyword(tokenBuilder) ?? MatchNumericLiteral(tokenBuilder) ?? MatchOperator(tokenBuilder) ?? MatchStringLiteral(tokenBuilder);
         }
 
         private Token MatchIdentiferOrKeyword(StringBuilder tokenBuilder)
         {
-            var match = _identifierRegex.Match(tokenBuilder.ToString());
+            var tokenValue = tokenBuilder.ToString();
+            if (tokenValue.StartsWith('\"') && tokenValue.EndsWith('\"'))
+            {
+                return null;
+            }
+
+            var match = _identifierRegex.Match(tokenValue);
             if (!match.Success)
             {
                 return null;
@@ -102,7 +109,15 @@ namespace TinyLang.Compiler
         {
             var tokenValue = tokenBuilder.ToString();
             var match = _numericRegex.Match(tokenValue);
-            return !match.Success ? null : new Token(TokenType.Literal, double.Parse(tokenValue), typeof(double));
+            return match.Success ? new Token(TokenType.Literal, double.Parse(tokenValue), typeof(double)) : null;
+        }
+
+        private Token MatchStringLiteral(StringBuilder tokenBuilder)
+        {
+            var tokenValue = tokenBuilder.ToString();
+            return tokenValue.StartsWith('\"') && tokenValue.EndsWith('\"')
+                ? new Token(TokenType.Literal, tokenValue, typeof(string))
+                : null;
         }
 
         private Token MatchOperator(StringBuilder tokenBuilder)
