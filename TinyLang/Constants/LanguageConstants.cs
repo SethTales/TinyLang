@@ -44,5 +44,7 @@ namespace TinyLang.Constants
             ";",
             ","
         };
+
+        public const char CommentIdentifier = '#';
     }
 }

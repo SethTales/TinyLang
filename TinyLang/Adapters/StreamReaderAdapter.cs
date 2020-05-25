@@ -8,6 +8,7 @@ namespace TinyLang.Adapters
     public interface IStreamReaderAdapter : IDisposable
     {
         int Read();
+        void DiscardCurrentLine();
         int Peek();
     }
 
@@ -23,6 +24,11 @@ namespace TinyLang.Adapters
         public int Read()
         {
             return _streamReader.Read();
+        }
+
+        public void DiscardCurrentLine()
+        {
+            _streamReader.ReadLine();
         }
 
         public int Peek()

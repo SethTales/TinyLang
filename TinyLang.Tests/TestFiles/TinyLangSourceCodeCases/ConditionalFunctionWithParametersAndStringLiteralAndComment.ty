@@ -1,0 +1,7 @@
+﻿func main(a, b) {
+#this is a comment
+	if (a > b) {
+		return b;
+	}
+	return "hello";
+}
